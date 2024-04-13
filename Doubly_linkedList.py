@@ -89,6 +89,25 @@ class DoublyLL:
 
         print(llstr)
 
+    def remove_at(self, index):
+        if self.head is None:
+            print("Doubly linked list in empty")
+
+        if index == 0:
+            self.head = self.head.next
+            self.head.prev = None
+
+        count = 0
+        pointer = self.head
+
+        while pointer:
+            if count == index:
+                pointer.prev.next = pointer.next
+                pointer.next.prev = pointer.prev
+                
+            count += 1
+            pointer = pointer.next
+
 if __name__ == "__main__":
 
     dll = DoublyLL()
@@ -97,5 +116,6 @@ if __name__ == "__main__":
     dll.insert_at_end(6)
     dll.insert_at_end(7)
     dll.insert_at(10,1)
+    dll.remove_at(3)
     dll.traverse_forward()
     dll.traverse_backward()
